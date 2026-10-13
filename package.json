@@ -1,0 +1,23 @@
+{
+  "name": "temple-guardian-web",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host 127.0.0.1",
+    "build": "tsc --noEmit && vite build",
+    "preview": "vite preview --host 127.0.0.1",
+    "test": "vitest run",
+    "extract:game": "python3 tools/export-game.py && python3 tools/export-hit-shapes.py && node tools/compile-scripts.mjs",
+    "check:assets": "python3 tools/check-assets.py"
+  },
+  "dependencies": {
+    "acorn": "8.19.0",
+    "escodegen": "2.1.0",
+    "pixi-filters": "6.1.5",
+    "pixi.js": "8.22.0",
+    "typescript": "5.9.3",
+    "vite": "8.3.4",
+    "vitest": "5.0.3"
+  }
+}

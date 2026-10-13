@@ -1,0 +1,6 @@
+# Replace game.example.com with your domain. Run Caddy on the host alongside
+# the Compose service; Caddy obtains and renews its HTTPS certificate.
+game.example.com {
+    encode zstd gzip
+    reverse_proxy 127.0.0.1:8080
+}

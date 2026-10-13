@@ -1,0 +1,17 @@
+var §\x01§ = 813;
+var §\x0f§ = 1;
+this.Sudu = 2.2;
+this.MAXAngle = this.Sudu * 10;
+this.MaxHP = 45;
+this.HP = this.MaxHP;
+this.Attack = 7;
+this.Money = 1;
+this.SenJiDian = 0;
+this.Title = "牛头";
+this.TyleStr = "陆军";
+this.Level = 3;
+this.Tyle = 1;
+this.TeCang = "易怒";
+this.TeSing = 8;
+this.Die = true;
+this.PerStar = 100;

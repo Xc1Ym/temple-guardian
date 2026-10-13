@@ -1,0 +1,20 @@
+* text=auto
+*.ts text eol=lf
+*.js text eol=lf
+*.json text eol=lf
+*.md text eol=lf
+*.yml text eol=lf
+*.yaml text eol=lf
+*.sh text eol=lf
+*.py text eol=lf
+*.java text eol=lf
+*.command text eol=lf
+# Original evidence retains its exact bytes, including line endings.
+reference/** -text -whitespace
+*.swf binary
+*.exe binary
+*.png binary
+*.jpg binary
+*.mp3 binary
+*.otf binary
+*.woff2 binary

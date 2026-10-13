@@ -1,0 +1,17 @@
+var §\x01§ = 720;
+var §\x0f§ = 1;
+this.Level = 1;
+this.MaxHP = 10;
+this.HP = this.MaxHP;
+this.HPmini = this.MaxHP * _root.SeSiHPmini;
+this.Attack = 50;
+this.DiRenName = "";
+this.Die = false;
+this.Tyle = 2;
+this.SJTyle = 2;
+this.DQHRtyle = 1;
+this.Title = "地剌";
+this.TyleStr = "陷井";
+this.Money = 7;
+this.SenJiDian = 0;
+this.MessText = "〓 <b>地剌</b> 〓<br>   陷井，伤害经过的地面敌人，会被敌人攻破而完全消失。<br><font color=\'#001F99\'>   <b>注：</b>该设施对空军无效！</font>";

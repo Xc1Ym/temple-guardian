@@ -1,0 +1,15 @@
+var §\x01§ = 858;
+var §\x0f§ = 1;
+this.Level = _parent.Level = 1;
+_parent.FaSieJJ = 1;
+_parent.JianSuDu = 20;
+_parent.rMaxHP = this.HP = _parent.HP = _parent.MaxHP;
+_parent.rFanWei = _parent.FanWei = 105;
+_parent.rAttack = _parent.Attack = 1500;
+_parent.Attack = _parent.rAttack * _root.All_Attack;
+_parent.FanWei = _parent.rFanWei * _root.All_FanWei;
+this.SJMoney = _parent.SJMoney = 999999999999;
+this.SJSenJiDian = _parent.SJSenJiDian = 999999999999;
+_parent.M_FanGiang._width = _parent.M_FanGiang._height = _parent.FanWei * 2;
+this.HPB = _parent.HPB = _parent.MaxHPB = 500;
+this.LevelB = _parent.LevelB = 0;

@@ -1,0 +1,16 @@
+var §\x01§ = 36;
+var §\x0f§ = 1;
+this.Level = 1;
+this.MaxHP = 110;
+this.HP = this.MaxHP;
+this.HPmini = this.MaxHP * _root.SeSiHPmini;
+this.Attack = 1;
+this.DiRenName = "";
+this.Die = false;
+this.Tyle = 2;
+this.SJTyle = 4;
+this.Title = "天网";
+this.TyleStr = "陷井";
+this.Money = 12;
+this.SenJiDian = 0;
+this.MessText = "〓 <b>天网</b> 〓<br>   陷井，阻碍空中敌人前进并同时不断伤害靠近的敌人，会被敌人攻破而完全消失。<br><font color=\'#001F99\'>   <b>注：</b>该设施对陆军无效！</font>";

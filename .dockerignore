@@ -1,0 +1,14 @@
+node_modules
+dist
+.git
+.tools
+reference
+docs
+tools
+release
+*.swf
+*.exe
+*.log
+src/**/*.test.ts
+public/assets/fonts/source
+public/assets/fonts/Songti-reference.swf

@@ -1,0 +1,65 @@
+·
+--- RECORDSEPARATOR ---
+操控方式
+--- RECORDSEPARATOR ---
+：全程鼠标操作。另：
+--- RECORDSEPARATOR ---
+P
+--- RECORDSEPARATOR ---
+键暂停、
+--- RECORDSEPARATOR ---
+S
+--- RECORDSEPARATOR ---
+键开关音效、空格开始。
+--- RECORDSEPARATOR ---
+·
+--- RECORDSEPARATOR ---
+金钱
+--- RECORDSEPARATOR ---
+：所有设施的修建和升级、科技的研究都需要金钱，金钱可以通过
+--- RECORDSEPARATOR ---
+消灭敌人来获得。
+--- RECORDSEPARATOR ---
+·
+--- RECORDSEPARATOR ---
+神迹
+--- RECORDSEPARATOR ---
+：神御塔与及与神御塔相关的科技的修建和升级都需要神迹点数，
+--- RECORDSEPARATOR ---
+神迹可以通过消灭某些敌人来获得。
+--- RECORDSEPARATOR ---
+·
+--- RECORDSEPARATOR ---
+神殿
+--- RECORDSEPARATOR ---
+：别让敌人靠近神殿，否则神殿会受到损害，
+--- RECORDSEPARATOR ---
+ 
+--- RECORDSEPARATOR ---
+当神殿
+--- RECORDSEPARATOR ---
+HP
+--- RECORDSEPARATOR ---
+为
+--- RECORDSEPARATOR ---
+0
+--- RECORDSEPARATOR ---
+时游戏
+--- RECORDSEPARATOR ---
+失败，而且，每个敌人的攻击都会减少神迹点数。
+--- RECORDSEPARATOR ---
+·
+--- RECORDSEPARATOR ---
+协同攻击
+--- RECORDSEPARATOR ---
+：这是神电塔的特有攻击方式，每个神电塔在攻击敌人时可以
+--- RECORDSEPARATOR ---
+获得附近其射程范围内所有神电塔的协助，大大加强攻击威力。
+--- RECORDSEPARATOR ---
+·
+--- RECORDSEPARATOR ---
+陷井攻击
+--- RECORDSEPARATOR ---
+：这是神火塔的特有攻击方式，每个神火塔在攻击的同时会投
+--- RECORDSEPARATOR ---
+放火陷井，使经过陷井的敌人受到伤害，火陷井会在一定时间内消失。

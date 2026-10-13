@@ -1,0 +1,16 @@
+var §\x01§ = 444;
+var §\x0f§ = 1;
+this.Level = 1;
+this.MaxHP = 110;
+this.HP = this.MaxHP;
+this.HPmini = this.MaxHP * _root.SeSiHPmini;
+this.DiRenName = "";
+this.Die = false;
+this.Attack = 0;
+this.Tyle = 2;
+this.SJTyle = 1;
+this.Title = "阻碍墙";
+this.TyleStr = "陷井";
+this.Money = 7;
+this.SenJiDian = 0;
+this.MessText = "〓 <b>阻碍墙</b> 〓<br>   陷井，阻碍地面敌人前进，会被敌人攻破而完全消失。<br><font color=\'#001F99\'>   <b>注：</b>该设施对空军无效！</font>";

@@ -1,0 +1,12 @@
+var §\x01§ = 935;
+var §\x0f§ = 1;
+this.Level = _parent.Level = 2;
+_parent.rMaxHP = this.MaxHP = _parent.MaxHP = 150;
+this.HP = _parent.HP = _parent.MaxHP * _root.All_MaxHP;
+_parent.Attack = 1;
+this.SJMoney = _parent.SJMoney = 195;
+this.LevelB = _parent.LevelB = 3;
+this.MaxHPB = _parent.MaxHPB = 200;
+this.HPB = _parent.HPB = _parent.MaxHPB;
+_parent.AttackB = 1;
+stop();

@@ -1,0 +1,14 @@
+var §\x01§ = 517;
+var §\x0f§ = 1;
+this.FanWei = 130;
+this.Die = false;
+this.Level = 2;
+this.MaxHP = 100;
+this.HP = this.MaxHP;
+this.SJMoney = 800;
+this.SJSenJiDian = 160;
+this.LevelB = 3;
+this.MaxHPB = 200;
+this.FanWeiB = 150;
+this.HPB = this.MaxHPB;
+_root.SDHPstr = this.HP + " / " + this.MaxHP;

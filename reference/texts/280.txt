@@ -1,0 +1,13 @@
+  
+--- RECORDSEPARATOR ---
+请输入您的名字：
+--- RECORDSEPARATOR ---
+注
+--- RECORDSEPARATOR ---
+:
+--- RECORDSEPARATOR ---
+只能是英文
+--- RECORDSEPARATOR ---
+/
+--- RECORDSEPARATOR ---
+拼音

@@ -1,0 +1,17 @@
+var §\x01§ = 571;
+var §\x0f§ = 1;
+this.Sudu = 1.8;
+this.MAXAngle = this.Sudu * 10;
+this.MaxHP = 220;
+this.HP = this.MaxHP;
+this.Attack = 9;
+this.Money = 3;
+this.SenJiDian = 0;
+this.Title = "岩怪";
+this.TyleStr = "陆军";
+this.Level = 7;
+this.Tyle = 1;
+this.TeCang = "皮厚";
+this.TeSing = 4;
+this.Die = true;
+this.PerStar = 100;

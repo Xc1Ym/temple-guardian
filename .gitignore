@@ -1,0 +1,14 @@
+node_modules/
+dist/
+release/
+.tools/
+.DS_Store
+*.log
+hs_err_pid*
+__pycache__/
+*.py[cod]
+*.class
+.env
+.env.*
+!.env.example
+*.tsbuildinfo

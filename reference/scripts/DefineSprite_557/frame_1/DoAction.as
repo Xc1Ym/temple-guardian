@@ -1,0 +1,11 @@
+var §\x01§ = 477;
+var §\x0f§ = 1;
+this.Level = _parent.Level = 1;
+_parent.rMaxHP = this.MaxHP = _parent.MaxHP = 110;
+this.HP = _parent.HP = _parent.MaxHP * _root.All_MaxHP;
+this.SJMoney = _parent.SJMoney = 70;
+this.SJSenJiDian = _parent.SJSenJiDian = 0;
+this.LevelB = _parent.LevelB = 2;
+this.MaxHPB = _parent.MaxHPB = 150;
+this.HPB = _parent.HPB = _parent.MaxHPB;
+stop();

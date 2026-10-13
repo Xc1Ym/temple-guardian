@@ -1,0 +1,16 @@
+var §\x01§ = 86;
+var §\x0f§ = 1;
+this.Level = 1;
+this.MaxHP = 10;
+this.HP = this.MaxHP;
+this.HPmini = this.MaxHP * _root.SeSiHPmini;
+this.Attack = 150;
+this.DiRenName = "";
+this.Die = false;
+this.Tyle = 2;
+this.SJTyle = 2;
+this.DQHRtyle = 2;
+this.Title = "火焰";
+this.TyleStr = "陷井";
+this.Money = 10;
+this.SenJiDian = 0;

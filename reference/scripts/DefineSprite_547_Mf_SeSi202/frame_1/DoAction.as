@@ -1,0 +1,16 @@
+var §\x01§ = 556;
+var §\x0f§ = 1;
+this.Level = 1;
+this.MaxHP = 25;
+this.HP = this.MaxHP;
+this.HPmini = this.MaxHP * _root.SeSiHPmini;
+this.Attack = 70;
+this.DiRenName = "";
+this.Die = false;
+this.Tyle = 2;
+this.SJTyle = 3;
+this.Title = "毒池";
+this.TyleStr = "陷井";
+this.Money = 7;
+this.SenJiDian = 0;
+this.MessText = "〓 <b>毒池</b> 〓<br>   陷井，使经过的地面敌人中毒，每走一格损总伤害值1/7的血，总伤害值等于毒池的攻击力，会被敌人攻破而完全消失。<br><font color=\'#001F99\'>   <b>注：</b>该设施对空军无效！</font>";

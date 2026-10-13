@@ -1,0 +1,3 @@
+音效开关
+--- RECORDSEPARATOR ---
+[S]

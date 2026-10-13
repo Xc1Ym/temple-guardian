@@ -1,0 +1,11 @@
+{
+  "temple-guardian.swf": {
+    "bytes": 2849402,
+    "sha256": "15cc3d571cb10ac3ef897bf2f5808b1cdd31186aa864d4b63a20c8a333ce5e0c"
+  },
+  "temple-guardian.exe": {
+    "bytes": 6327866,
+    "sha256": "c4458da05d3e9c11806b36fc226924355c42f0775c604768899046c49a0552cc",
+    "embeddedSwfOffset": 3478456
+  }
+}

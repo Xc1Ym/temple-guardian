@@ -1,0 +1,63 @@
+1
+--- RECORDSEPARATOR ---
+、编辑方法：
+--- RECORDSEPARATOR ---
+    
+--- RECORDSEPARATOR ---
+点击地图格子，地图格
+--- RECORDSEPARATOR ---
+将在上边图示的四种地形中
+--- RECORDSEPARATOR ---
+切换，当然，每种地形的地
+--- RECORDSEPARATOR ---
+点都是有限制的。
+--- RECORDSEPARATOR ---
+2
+--- RECORDSEPARATOR ---
+、编辑完成后请点击
+--- RECORDSEPARATOR ---
+ “
+--- RECORDSEPARATOR ---
+检
+--- RECORDSEPARATOR ---
+验地图
+--- RECORDSEPARATOR ---
+”
+--- RECORDSEPARATOR ---
+，检验合格才可以
+--- RECORDSEPARATOR ---
+“
+--- RECORDSEPARATOR ---
+保存地图
+--- RECORDSEPARATOR ---
+”
+--- RECORDSEPARATOR ---
+。
+--- RECORDSEPARATOR ---
+3
+--- RECORDSEPARATOR ---
+、要玩
+--- RECORDSEPARATOR ---
+ 
+--- RECORDSEPARATOR ---
+编辑并保存好的地
+--- RECORDSEPARATOR ---
+图，请在游戏主菜单中点击
+--- RECORDSEPARATOR ---
+“
+--- RECORDSEPARATOR ---
+游戏设置
+--- RECORDSEPARATOR ---
+”
+--- RECORDSEPARATOR ---
+，再点击
+--- RECORDSEPARATOR ---
+“
+--- RECORDSEPARATOR ---
+载
+--- RECORDSEPARATOR ---
+入地图
+--- RECORDSEPARATOR ---
+”
+--- RECORDSEPARATOR ---
+。

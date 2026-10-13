@@ -1,0 +1,17 @@
+var §\x01§ = 761;
+var §\x0f§ = 1;
+this.Sudu = 2.5;
+this.MAXAngle = this.Sudu * 10;
+this.MaxHP = 400;
+this.HP = this.MaxHP;
+this.Attack = 14;
+this.Money = 7;
+this.SenJiDian = 6;
+this.Title = "白袍法师";
+this.TyleStr = "陆军";
+this.Level = _root.NowGuanSu;
+this.Tyle = 101;
+this.TeCang = "无";
+this.TeSing = 0;
+this.Die = true;
+this.PerStar = 100;

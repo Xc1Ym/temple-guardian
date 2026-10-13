@@ -1,0 +1,5 @@
+当前神殿耐久
+--- RECORDSEPARATOR ---
+/
+--- RECORDSEPARATOR ---
+总耐久

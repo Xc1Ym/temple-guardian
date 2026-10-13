@@ -1,0 +1,9 @@
+var §\x01§ = 234;
+var §\x0f§ = 1;
+this.FanWei = 150;
+this.Die = false;
+this.Level = 3;
+this.MaxHP = 200;
+this.HP = this.MaxHP;
+this.LevelB = 0;
+_root.SDHPstr = this.HP + " / " + this.MaxHP;

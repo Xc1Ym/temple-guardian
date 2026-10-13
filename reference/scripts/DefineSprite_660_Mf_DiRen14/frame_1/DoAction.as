@@ -1,0 +1,17 @@
+var §\x01§ = 701;
+var §\x0f§ = 1;
+this.Sudu = 2.5;
+this.MAXAngle = this.Sudu * 10;
+this.MaxHP = 400;
+this.HP = this.MaxHP;
+this.Attack = 14;
+this.Money = 5;
+this.SenJiDian = 2;
+this.Title = "炙炎";
+this.TyleStr = "陆军";
+this.Level = 14;
+this.Tyle = 1;
+this.TeCang = "防火";
+this.TeSing = 2;
+this.Die = true;
+this.PerStar = 100;

@@ -1,0 +1,17 @@
+var §\x01§ = 289;
+var §\x0f§ = 1;
+this.Level = _parent.Level = 2;
+_parent.FaSieJJ = 0;
+_parent.JianSuDu = 10;
+_parent.FanWei = 9999;
+_parent.Attack = 450;
+_parent.rMaxHP = this.MaxHP = _parent.MaxHP = 150;
+this.HP = _parent.HP = _parent.MaxHP * _root.All_MaxHP;
+this.SJMoney = _parent.SJMoney = 800;
+this.HPB = _parent.HPB = _parent.MaxHPB = 200;
+this.LevelB = _parent.LevelB = 3;
+_parent.FaSieJJB = 0;
+_parent.JianSuDuB = 11;
+_parent.FanWeiB = 9999;
+_parent.AttackB = 600;
+stop();

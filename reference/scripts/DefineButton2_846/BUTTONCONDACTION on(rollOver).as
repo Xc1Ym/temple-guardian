@@ -1,0 +1,9 @@
+on(rollOver){
+   var §\x01§ = 712;
+   var §\x0f§ = 1;
+   _root.MessText = _root.M_ShowSeSi101.MessText;
+   _root.M_MainSSBan.MessAttack = "<font color=\'#FF0000\'><b>" + _root.M_ShowSeSi101.Attack + "</b></font>";
+   _root.M_MainSSBan.MessMoney = "<font color=\'#FF0000\'><b>" + Math.round(Number(_root.M_ShowSeSi101.Money * _root.BuyLu)) + "</b></font>" + "[" + _root.M_ShowSeSi101.Money + "×" + _root.BuyLu + "]";
+   _root.M_MainSSBan.MessHP = "<font color=\'#FF0000\'><b>" + Math.round(Number(_root.M_ShowSeSi101.MaxHP * _root.All_MaxHP)) + "</b></font>" + "[" + _root.M_ShowSeSi101.MaxHP + "×" + _root.All_MaxHP + "]";
+   _root.M_MainSSBan.MessSenJi = "<font color=\'#FF0000\'><b>" + _root.M_ShowSeSi101.SenJiDian + "</b></font>";
+}

@@ -1,0 +1,17 @@
+var §\x01§ = 994;
+var §\x0f§ = 1;
+this.Sudu = 2.5;
+this.MAXAngle = this.Sudu * 10;
+this.MaxHP = 90;
+this.HP = this.MaxHP;
+this.Attack = 7;
+this.Money = 2;
+this.SenJiDian = 0;
+this.Title = "血魔";
+this.TyleStr = "空军";
+this.Level = 5;
+this.Tyle = 1;
+this.TeCang = "恢复";
+this.TeSing = 7;
+this.Die = true;
+this.PerStar = 100;

@@ -1,0 +1,5 @@
+    
+--- RECORDSEPARATOR ---
+您确定要放弃现在正在进行的游戏
+--- RECORDSEPARATOR ---
+而返回到主菜单吗？
