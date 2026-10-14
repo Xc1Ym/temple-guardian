@@ -63,7 +63,7 @@ npm run preview
 
 `.github/workflows/pages.yml` 在推送 `main` 时执行依赖安装、回归测试、素材／中文覆盖检查及生产构建，全部成功后部署到 GitHub Pages。Pull Request 只执行检查和构建；也可从 Actions 页面手动运行。
 
-Pages 的发布来源使用 **GitHub Actions**。工作流从 GitHub Pages 配置读取部署子路径，图片、字体、音频和游戏数据均使用对应路径。仓库改名或设置自定义域名后，重新运行部署即可；README 中的链接需同步修改。
+本仓库已启用 Pages。复制或 Fork 工程后，需要先在仓库的 **Settings → Pages → Build and deployment → Source** 中选择 **GitHub Actions**，再运行部署。工作流从 GitHub Pages 配置读取部署子路径，图片、字体、音频和游戏数据均使用对应路径。仓库改名或设置自定义域名后，重新运行部署即可；README 中的链接需同步修改。
 
 本地验证项目子路径构建：
 
