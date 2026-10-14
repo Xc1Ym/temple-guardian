@@ -18,3 +18,29 @@ dialog button{display:block;margin:16px auto 0}
 .table-scroll{overflow:auto}
 table{width:100%;border-collapse:collapse;font-size:12px}
 td,th{padding:9px 5px;text-align:left;border-bottom:1px solid #cfb680}
+.trainer-bar{height:0}
+.trainer-launcher{position:fixed;top:24px;left:50%;transform:translateX(-50%);z-index:2;width:90px;height:28px;opacity:0;background:#30271a;border:1px solid #635030;color:#c7ad7a;font-size:12px;padding:3px 11px;border-radius:3px;transition:opacity .15s}
+.trainer-launcher:hover{opacity:1;background:#30271a;color:#e8cb95}
+.trainer-dialog{width:640px;padding:16px}
+.trainer-heading{display:flex;align-items:center;justify-content:space-between}
+.trainer-heading h2{margin:0}
+.trainer-heading button{margin:0;font-size:22px;line-height:1;padding:3px 9px}
+.trainer-dialog fieldset{padding:0;margin:0;border:0;min-width:0}
+.trainer-dialog section{border-top:1px solid #c9a565;margin-top:12px;padding-top:8px}
+.trainer-dialog h3{font-size:16px;margin:0 0 8px}
+.trainer-note{font-size:12px;line-height:1.6;margin:8px 0;color:#72562e}
+.trainer-values,.trainer-research{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.trainer-dialog label{display:block;font-size:13px;margin:0}
+.trainer-dialog input[type=number]{display:block;width:100%;min-width:0;background:#fff8e6;border:1px solid #b28a4e;padding:5px 7px;color:#573817}
+.trainer-toggles{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+.trainer-toggles label{display:flex;align-items:center;gap:5px}
+.trainer-toggles input{accent-color:#956519;flex-shrink:0}
+.trainer-actions{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.trainer-dialog .trainer-actions button{font-size:13px;margin:0;padding:5px 9px}
+.trainer-dialog button:disabled,.trainer-dialog fieldset:disabled{opacity:.55}
+.trainer-wave{display:flex;align-items:flex-end;gap:8px;margin-top:10px}
+.trainer-wave label{width:130px}
+.trainer-wave button{font-size:13px;margin:0}
+.trainer-status{background:#e7d1a1;border-left:3px solid #a77b31;padding:8px;margin-bottom:0;font-size:13px;line-height:1.6}
+.trainer-status.error{color:#9c2916;border-color:#9c2916}
+.trainer-return{min-width:130px}

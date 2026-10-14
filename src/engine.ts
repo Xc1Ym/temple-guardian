@@ -87,7 +87,7 @@ export class NativeClip {
     if(k==='__clip')return this;
     if(k==='_visible'&&this.removed)return false;
     if(k==='text'||k==='htmlText')return this.textValue();
-    if(k in this.props)return this.props[k];
+    if(k in this.props)return this.engine.readOverride?this.engine.readOverride(this,k,this.props[k]):this.props[k];
     const child=this.child(k);if(child)return child.proxy;
     if(k==='_root')return this.engine.root.proxy;if(k==='_parent')return this.parent?.proxy;if(k==='_name')return this.name;
     if(k==='_x')return this.matrix[4];if(k==='_y')return this.matrix[5];
@@ -100,6 +100,7 @@ export class NativeClip {
     const value=(this as any)[k];if(typeof value==='function'){if(!this.bound.has(k))this.bound.set(k,value.bind(this));return this.bound.get(k);}return undefined;
   }
   write(k:string,v:any) {
+    if(this.engine.writeOverride)v=this.engine.writeOverride(this,k,v);
     if(k==='_name'){this.name=String(v);return;}
     if(k==='_x'||k==='_y'){this.matrix[k==='_x'?4:5]=Math.trunc(Number(v)*20)/20;return;}
     if(k==='_rotation'){const state=this.transformValues(),a=(Number(v)-state.rotation)*Math.PI/180,co=Math.cos(a),si=Math.sin(a);const [x,y,z,w]=this.matrix;this.matrix[0]=x*co-y*si;this.matrix[1]=x*si+y*co;this.matrix[2]=z*co-w*si;this.matrix[3]=z*si+w*co;let rotation=Number(v)%360;if(rotation>180)rotation-=360;if(rotation<-180)rotation+=360;state.rotation=rotation;return;}
@@ -178,6 +179,8 @@ export class GameEngine {
   root:NativeClip;globals:Record<string,any>={};serial=0;soundSerial=100;ticks=0;time=0;frameTime=0;errors:string[]=[];pending:NativeClip[]=[];executing=0;initializing=true;globalAudioToggle=false;
   private pausedCountdown?:{date:Date;frameTime:number};
   mouse={x:0,y:0};keys=new Set<number>();drag?:{clip:NativeClip;offset:{x:number;y:number};bounds?:number[]};audio?:SoundPort;
+  readOverride?:(clip:NativeClip,key:string,value:any)=>any;
+  writeOverride?:(clip:NativeClip,key:string,value:any)=>any;
   onRanking?:()=>void;onScore?:()=>void;onTextInput?:(clip:NativeClip)=>void;onNotice?:(text:string)=>void;private upgrading=false;
   constructor(public data:GameData,public save=new Persistence(),random:()=>number=Math.random,audio?:SoundPort) {
     this.audio=audio;
@@ -285,5 +288,5 @@ export class GameEngine {
   }
   showPage(page:number){const r=this.root.proxy;if(r.GameStar)r.GamePause=true;let menu=get(r,'M_ShowCang')?.M_DHKStar;if(!menu)menu=get(r,'M_ShowCang')?.attachMovie('Mf_DHKStar','M_DHKStar',1000,{_x:325,_y:250});menu?.M_NeiRong?.gotoAndStop('a'+page);}
   submitScore(name?:string,score?:number){const r=this.root.proxy;this.save.data.scores.push({name:String(name||r.SumitUserS||'玩家').slice(0,40),score:Math.max(0,score??(Number(r.AllDeFen)||0)),map:Number(r.NowDiTuID)||0,mode:Number(r.MySellID)||1,wave:Number(r.NowGuanSu)||1,date:new Date().toISOString()});this.save.data.scores=this.save.data.scores.sort((a,b)=>b.score-a.score).slice(0,200);this.save.flush();this.onScore?.();}
-  snapshot():GameSnapshot {const r=this.root.proxy;const temple=get(r,'M_DiTu8')?.M_GongDian;return{tick:this.ticks,playing:!!r.GameStar,paused:!!r.GamePause,wave:r.NowGuanSu||1,money:r.Money||0,miracles:r.SenJiDian||0,score:r.AllDeFen||0,remaining:r.DiRenMaxZL||0,templeHP:temple?.HP||0,templeMaxHP:temple?.MaxHP||0,map:r.NowDiTuID,mode:r.MySellID,facilities:this.walk().filter(c=>c.dynamic&&c.props.SeSiID!==undefined).map(c=>({id:c.props.SeSiID,x:c.read('_x'),y:c.read('_y'),level:c.props.Level,hp:c.props.HP,attack:c.props.Attack})),enemies:[...(get(r,'M_DiTu0')?.__clip?.children.values()||[])].filter((c:NativeClip)=>c.props.NowDiRenID!==undefined).map((c:NativeClip)=>({id:c.props.ID,kind:c.props.NowDiRenID,x:c.read('_x'),y:c.read('_y'),hp:c.props.HP,dead:c.props.Die}))};}
+  snapshot():GameSnapshot {const r=this.root.proxy;const temple=get(r,'M_DiTu8')?.M_GongDian;return{tick:this.ticks,playing:!!r.GameStar,paused:!!r.GamePause,wave:r.NowGuanSu||1,money:r.Money||0,miracles:r.SenJiDian||0,score:r.AllDeFen||0,remaining:r.DiRenMaxZL||0,templeHP:temple?.HP||0,templeMaxHP:temple?.MaxHP||0,map:r.NowDiTuID,mode:r.MySellID,facilities:this.walk().filter(c=>c.dynamic&&c.props.SeSiID!==undefined).map(c=>({id:c.props.SeSiID,x:c.read('_x'),y:c.read('_y'),level:c.props.Level,hp:c.read('HP'),attack:c.read('Attack')})),enemies:[...(get(r,'M_DiTu0')?.__clip?.children.values()||[])].filter((c:NativeClip)=>c.props.NowDiRenID!==undefined).map((c:NativeClip)=>({id:c.props.ID,kind:c.props.NowDiRenID,x:c.read('_x'),y:c.read('_y'),hp:c.props.HP,dead:c.props.Die}))};}
 }
