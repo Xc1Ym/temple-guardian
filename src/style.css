@@ -18,9 +18,6 @@ dialog button{display:block;margin:16px auto 0}
 .table-scroll{overflow:auto}
 table{width:100%;border-collapse:collapse;font-size:12px}
 td,th{padding:9px 5px;text-align:left;border-bottom:1px solid #cfb680}
-.trainer-bar{height:0}
-.trainer-launcher{position:fixed;top:24px;left:50%;transform:translateX(-50%);z-index:2;width:90px;height:28px;opacity:0;background:#30271a;border:1px solid #635030;color:#c7ad7a;font-size:12px;padding:3px 11px;border-radius:3px;transition:opacity .15s}
-.trainer-launcher:hover{opacity:1;background:#30271a;color:#e8cb95}
 .trainer-dialog{width:640px;padding:16px}
 .trainer-heading{display:flex;align-items:center;justify-content:space-between}
 .trainer-heading h2{margin:0}

@@ -1,16 +1,11 @@
-import { GameTrainer, TRAINER_CODE, type TrainerOptions } from './trainer';
+import { GameTrainer, type TrainerOptions } from './trainer';
 
 const toggles: [keyof TrainerOptions,string][]=[['lockMoney','锁定金钱'],['lockMiracles','锁定神迹'],['templeInvincible','神殿无敌'],['facilitiesInvincible','设施无敌 / 无限耐久'],['freeCosts','建造、升级、研究免费'],['oneHit','一击必杀 / 无视护盾'],['unlockFacilities','解锁设施 / 解除数量限制'],['freezeCountdown','冻结准备倒计时']];
 const factors: [keyof TrainerOptions,string,number,number][]=[['attack','攻击倍率',1,1000],['range','射程倍率',1,50],['fireRate','攻击加速',1,100],['enemySpeed','敌人速度',0,1],['gameSpeed','游戏速度',.25,8]];
 const researchNames=['锻造','抛射','土木','神恩','神算'];
 
 export class TrainerUI {
-  button:HTMLButtonElement;
-  constructor(private trainer:GameTrainer,app:HTMLElement,private redraw:()=>void,private resetClock:()=>void){
-    const bar=document.createElement('div');bar.className='trainer-bar';
-    this.button=document.createElement('button');this.button.type='button';this.button.className='trainer-launcher';this.button.textContent='修改器';this.button.title=`修改器 · 也可输入 ${TRAINER_CODE}`;
-    this.button.addEventListener('click',()=>this.open());bar.append(this.button);app.prepend(bar);
-  }
+  constructor(private trainer:GameTrainer,private redraw:()=>void,private resetClock:()=>void){}
   open(){
     if(document.querySelector('dialog'))return;
     const t=this.trainer,e=t.engine,r=e.root.proxy,s=e.snapshot();let resume=t.running&&!s.paused;
@@ -57,7 +52,7 @@ export class TrainerUI {
     d.querySelectorAll('[data-close]').forEach(button=>button.addEventListener('click',()=>d.close()));
     d.addEventListener('close',()=>{
       d.remove();if(resume&&t.running){r.GamePause=false;if(document.hidden)e.dispatch({type:'pause'});}
-      this.resetClock();this.redraw();this.button.focus();
+      this.resetClock();this.redraw();
     });
     document.body.append(d);d.showModal();
   }

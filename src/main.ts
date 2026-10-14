@@ -72,11 +72,12 @@ async function initialize(){
   save=new Persistence(storage);if(!storage)save.warning='浏览器禁止本地保存';
   audio=new AudioPlayer(manifest);engine=new GameEngine(data,save,Math.random,audio);engine.applyVolumes();
   renderer=new GameRenderer(engine,manifest,host);await renderer.initialize();
-  trainer=new GameTrainer(engine);trainerUI=new TrainerUI(trainer,app,()=>renderer.render(),()=>{lastFrame=performance.now();accumulator=0;});
+  trainer=new GameTrainer(engine);trainerUI=new TrainerUI(trainer,()=>renderer.render(),()=>{lastFrame=performance.now();accumulator=0;});
   engine.onNotice=notice;engine.onRanking=ranking;engine.onScore=()=>notice('成绩已保存到本机排行榜');engine.onTextInput=inputText;
   document.addEventListener('pointerdown',()=>{audio.unlock();audio.resume();});
   document.addEventListener('keydown',e=>{
     const blocked=!!document.querySelector('dialog')||e.target instanceof HTMLInputElement||e.target instanceof HTMLTextAreaElement||e.target instanceof HTMLSelectElement||(e.target instanceof HTMLElement&&e.target.isContentEditable);
+    // 在游戏页面连续输入英文 godmode 即可打开修改器，无需回车。
     if(trainerCode.feed(e.key,performance.now(),blocked||e.ctrlKey||e.metaKey||e.altKey||e.repeat||e.isComposing)){e.preventDefault();trainerUI.open();return;}
     if(blocked||e.ctrlKey||e.metaKey||e.altKey||e.isComposing)return;
     if(['Space','KeyP','KeyS','KeyA','KeyH','KeyQ'].includes(e.code)){e.preventDefault();audio.unlock();engine.key(e.code==='Space'?32:e.code.charCodeAt(3));}
