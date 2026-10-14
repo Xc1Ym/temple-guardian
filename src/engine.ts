@@ -12,7 +12,7 @@ export interface GameSnapshot {tick:number;playing:boolean;paused:boolean;wave:n
 export interface UpgradeInfo {title:string;level:number;nextLevel:number;money:number;miracles:number;available:boolean;reason:string;changes:{label:string;from:number;to:number}[]}
 export const get = (o:any,k:any):any => o == null ? undefined : o[k];
 export const set = (o:any,k:any,v:any):any => { if(o != null)o[k]=v;return v; };
-export const call = (o:any,k:any,a:any[]):any => { const f=get(o,k);if(typeof f!=='function')return undefined;const e=o?.__clip?.engine;if(e)e.executing++;try{return f.apply(o,a);}finally{if(e)e.executing--;} };
+export const call = (o:any,k:any,a:any[]):any => { const f=get(o,k);if(typeof f!=='function')return undefined;const e=o?.__clip?.engine;if(e)e.executing++;try{return e?e.invoke(o,k,a,f):f.apply(o,a);}finally{if(e)e.executing--;} };
 const update=(o:any,k:any,d:number,p:boolean)=>{const v=Number(get(o,k));set(o,k,v+d);return p?v+d:v;};
 const del=(o:any,k:any)=>o==null?true:delete o[k];
 const identity=():Matrix=>[1,0,0,1,0,0];
@@ -170,7 +170,7 @@ export class NativeClip {
     const index=this.engine.pending.length;
     this.frame=n;for(const op of desired.values()){this.apply({...op,move:!!this.children.get(op.depth)},true);const child=this.children.get(op.depth);if(child&&!child.dynamic)child.timelineStart=starts.get(op.depth)||n;}this.engine.queue(this,index);if(!this.engine.executing)this.engine.drain();
   }
-  runFrame(){const f=this.def.frames?.[this.frame-1];if(!f)return;for(const i of f.scripts)this.engine.run(i,this);for(const s of f.sounds)this.engine.audio?.start(String(s.id),10000+this.uid,0,Number(s.info.loopCount||1),Number(this.engine.root.props.SoundVol??80));}
+  runFrame(){const f=this.def.frames?.[this.frame-1];if(!f)return;for(const i of f.scripts)this.engine.run(i,this);if(f.scripts.length)this.engine.finishFacilityTier(this);for(const s of f.sounds)this.engine.audio?.start(String(s.id),10000+this.uid,0,Number(s.info.loopCount||1),Number(this.engine.root.props.SoundVol??80));}
   advance(){if(!this.playing||!this.def.frames||this.def.frames.length<2)return;if(this.frame===this.def.frames.length){this.seek(1,true);return;}this.frame++;for(const op of this.def.frames[this.frame-1].ops)this.apply(op,true);this.runFrame();}
 }
 
@@ -203,9 +203,45 @@ export class GameEngine {
   }
   queue(clip:NativeClip,index=this.pending.length){if(!this.pending.includes(clip))this.pending.splice(index,0,clip);}
   run(i:number,clip:NativeClip){this.executing++;try{(programs[i] as any)?.call(clip.proxy,clip.scope,get,set,call,update,del);}catch(e){const message=`script ${i} at ${clip.name} frame ${clip.frame}: ${e instanceof Error?e.message:e}`;if(!this.errors.includes(message)){this.errors.push(message);console.error(message);}}finally{this.executing--;}}
+  // Original tier scripts multiply HP but leave MaxHP at its base value, and
+  // god towers read the ordinary range multiplier. Preserve the research
+  // formulas while applying their documented scope to construction/upgrades.
+  finishFacilityTier(clip:NativeClip){
+    const facility=clip.parent,p=facility?.props,r=this.root.props;
+    if(clip.name!=='M_Ta'||!p||(p.Tyle!==1&&p.Tyle!==2)||!Number.isFinite(p.rMaxHP)||!Number.isFinite(r.All_MaxHP))return;
+    p.MaxHP=Math.round(p.rMaxHP*r.All_MaxHP);p.HP=p.MaxHP;clip.props.HP=p.HP;
+    if(r.MySellID===3)p.HPmini=p.HP*r.SeSiHPmini;
+    if((p.TaTyle===3||p.TaTyle===4)&&Number.isFinite(p.rFanWei)){
+      p.FanWei=p.rFanWei*r.AllSen_FanWei;
+      const ring=facility!.proxy.M_FanGiang;if(ring){ring._width=p.FanWei*2;ring._height=p.FanWei*2;}
+    }
+  }
+  invoke(o:any,k:any,args:any[],fn:Function):any {
+    const r=this.root.props;
+    const before=o===this.root.proxy&&k==='F_UpdateSeSi'&&r.MySellID===3
+      ? ['M_SeSiQang','M_SeSiQangB'].flatMap(name=>[...(this.root.proxy[name]?.__clip.children.values()||[])] as NativeClip[])
+        .filter(c=>Number.isFinite(c.props.HPmini)&&Number.isFinite(c.props.MaxHP))
+        .map(c=>({clip:c,maxHP:c.props.MaxHP,hpmini:c.props.HPmini}))
+      : [];
+    const value=fn.apply(o,args);
+    // Each shot spends one third of a durability point. Keep the original
+    // fractional remainder and missing durability when research raises the cap.
+    for(const {clip,maxHP,hpmini} of before){const p=clip.props;p.HPmini=Math.min(p.MaxHP*r.SeSiHPmini,hpmini+(p.MaxHP-maxHP)*r.SeSiHPmini);}
+    return value;
+  }
   drain(){let guard=0;while(this.pending.length&&guard++<20000){const c=this.pending.shift()!;if(!c.removed)c.runFrame();}if(guard>=20000)this.errors.push('Timeline initialization overflow');}
   walk(clip=this.root):NativeClip[]{return [clip,...[...clip.children.values()].sort((a,b)=>b.depth-a.depth).flatMap(c=>this.walk(c))];}
-  event(clip:NativeClip,event:string){if(clip.removed&&event!=='unload')return;if(clip.id===346&&event==='release'&&!this.upgrading){this.upgrade();return;}if(clip.read('enabled')===false)return;const handler=clip.props['on'+event[0].toUpperCase()+event.slice(1)];if(typeof handler==='function'){this.executing++;try{handler.call(clip.proxy);}catch(e){const msg=`${event} ${clip.name}: ${e instanceof Error?e.message:e}`;if(!this.errors.includes(msg)){this.errors.push(msg);console.error(msg);}}finally{this.executing--;}}for(const i of clip.props.$events?.[event]||clip.def.events?.[event]||[])this.run(i,clip.def.kind==='button'&&clip.parent?clip.parent:clip);}
+  event(clip:NativeClip,event:string){if(clip.removed&&event!=='unload')return;if(clip.id===346&&event==='release'&&!this.upgrading){this.upgrade();return;}if(clip.read('enabled')===false)return;const research=event==='release'&&[868,872,876,880,884].includes(clip.id)?clip.parent:undefined,level=research?.props.Level;const handler=clip.props['on'+event[0].toUpperCase()+event.slice(1)];if(typeof handler==='function'){this.executing++;try{handler.call(clip.proxy);}catch(e){const msg=`${event} ${clip.name}: ${e instanceof Error?e.message:e}`;if(!this.errors.includes(msg)){this.errors.push(msg);console.error(msg);}}finally{this.executing--;}}for(const i of clip.props.$events?.[event]||clip.def.events?.[event]||[])this.run(i,clip.def.kind==='button'&&clip.parent?clip.parent:clip);if(research&&research.props.Level>level)this.researchNotice(clip.id,research.props.Level);}
+  private researchNotice(button:number,level:number){
+    const r=this.root.props,effects:Record<number,string>={
+      868:`锻造${level}级：弩箭塔、投石台攻击×${r.All_Attack}`,
+      872:`抛射${level}级：弩箭塔、投石台射程×${r.All_FanWei}`,
+      876:`土木${level}级：设施最大耐久×${r.All_MaxHP}`,
+      880:`神恩${level}级：神电坛、神火坛射程×${r.AllSen_FanWei}`,
+      884:`神算${level}级：建造/升级费用${Math.round(r.BuyLu*100)}%，出售价格${Math.round(r.SellLu*100)}%`
+    };
+    this.onNotice?.(effects[button]);
+  }
   private advanceClock(){const r=this.root.proxy,freezePreparation=r.GameStar&&r.GamePause&&r.B_GuanStar.enabled&&(r.MySellID===2||r.MySellID===3);if(freezePreparation){if(!this.pausedCountdown)this.pausedCountdown={date:r.NowTimeZL,frameTime:this.frameTime};}else if(this.pausedCountdown){const paused=this.pausedCountdown;if(r.NowTimeZL===paused.date)r.NowTimeZL=new this.globals.Date(Number(paused.date)+this.frameTime-paused.frameTime);this.pausedCountdown=undefined;}this.frameTime+=1000/28;if(!r.GamePause)this.time+=1000/28;}
   step(count=1) {for(let n=0;n<count;n++){this.drain();this.ticks++;this.advanceClock();const list=this.walk().sort((a,b)=>b.uid-a.uid);this.executing++;try{for(const c of list)if(!c.removed){this.event(c,'enterFrame');if(!c.removed)c.advance();}}finally{this.executing--;}this.drain();}this.save.flush();}
   movePointer(p:{x:number;y:number}){this.mouse=p;if(!this.drag)return;const d=this.drag,q=point(d.clip.parent?inverse(d.clip.parent.world()):identity(),p),b=d.bounds,x=q.x+d.offset.x,y=q.y+d.offset.y;d.clip.write('_x',b?Math.min(b[2],Math.max(b[0],x)):x);d.clip.write('_y',b?Math.min(b[3],Math.max(b[1],y)):y);}
