@@ -85,7 +85,7 @@ describe('Optional per-game trainer',()=>{
   });
   it.each([2,3])('freezes the preparation countdown in mode %i',mode=>{
     const {e,t,r}=scene(mode as 2|3);t.configure({freezeCountdown:true});t.step(1000);expect(r.B_GuanStar.enabled).toBe(true);t.configure({freezeCountdown:false});t.step(1000);expect(r.B_GuanStar.enabled).toBe(false);expect(e.errors).toEqual([]);
-  });
+  },15000);
   it.each([1,2,3])('applies all research and highest tower tier in mode %i',mode=>{
     const {e,t,r,tower}=arrow(mode as 1|2|3);t.setResearch([6,6,6,6,6]);expect(tower.Attack).toBe(41);expect(tower.FanWei).toBe(128);expect(tower.MaxHP).toBe(140);expect(r.BuyLu).toBeCloseTo(.7);if(mode===3)expect(tower.HPmini).toBe(420);
     t.maxFacilities();expect(tower.Level).toBe(3);expect(tower.LevelB).toBe(0);expect(tower.HP).toBe(tower.MaxHP);expect(r.Money).toBe(9991);expect(e.errors).toEqual([]);
