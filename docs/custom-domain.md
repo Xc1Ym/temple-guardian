@@ -17,6 +17,8 @@ Cloudflare 的 `xc1ym.com` 区域使用以下独立记录：
 
 CNAME 目标使用 GitHub Pages 用户域名，不包含仓库名或 URL 路径。GitHub Pages 管理此站点的 HTTPS 证书；证书就绪后在 Pages 配置中启用 **Enforce HTTPS**。
 
+本项目使用 GitHub Pages 直接提供静态文件，这条记录需保持“仅 DNS”。如果公开查询只返回 Cloudflare IP、查不到上述 CNAME，先核对记录是否变为“已代理”；GitHub 的 DNS 检查可能暂时保留缓存。确认公开解析正确后，如证书申请仍停滞，可按 GitHub 官方排障步骤移除并重新保存同一自定义域名。证书有效前不要强制 HTTPS。
+
 工作流的 `actions/configure-pages` 从 Pages 配置读取 `base_path`。绑定自定义域名后按 `/` 构建，游戏数据、字体、图片、音频及脚本都从新域名根路径加载。域名配置变更后必须重新运行工作流；仅修改 DNS 不会重建网站。本工程的发布来源为自定义 Actions 工作流，不依靠仓库里的 `CNAME` 文件。
 
 查询当前配置：
