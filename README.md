@@ -1,6 +1,6 @@
 # 神殿守护者 · Temple Guardian
 
-[在线游玩](https://xc1ym.github.io/temple-guardian/) · [逻辑复核](docs/logic-audit.md) · [开发说明](docs/development.md) · [来源与许可](NOTICE.md)
+[在线游玩](https://temple-guardian.xc1ym.com/) · [逻辑复核](docs/logic-audit.md) · [开发说明](docs/development.md) · [来源与许可](NOTICE.md)
 
 [![Build and deploy](https://github.com/Xc1Ym/temple-guardian/actions/workflows/pages.yml/badge.svg)](https://github.com/Xc1Ym/temple-guardian/actions/workflows/pages.yml)
 
@@ -64,7 +64,7 @@ npm run preview
 
 ## GitHub Pages 自动部署
 
-网站地址：[xc1ym.github.io/temple-guardian](https://xc1ym.github.io/temple-guardian/)。
+网站地址：[temple-guardian.xc1ym.com](https://temple-guardian.xc1ym.com/)。自定义域名由 Cloudflare DNS 指向 GitHub Pages，配置与检查方式见 [域名部署说明](docs/custom-domain.md)。
 
 `.github/workflows/pages.yml` 在推送 `main` 时执行依赖安装、回归测试、素材／中文覆盖检查及生产构建，全部成功后部署到 GitHub Pages。Pull Request 只执行检查和构建；也可从 Actions 页面手动运行。
 
